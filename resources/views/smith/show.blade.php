@@ -17,11 +17,9 @@
       <span class="font-bold text-xl">{{ $data->name }}</span>
       <br>
       <div class="relative flex">
-        <x-heroicon-s-star class="w-6 h-6 mr-1 float-left mx-auto my-auto"/>
-        <x-heroicon-s-star class="w-6 h-6 mr-1 float-left mx-auto my-auto"/>
-        <x-heroicon-s-star class="w-6 h-6 mr-1 float-left mx-auto my-auto"/>
-        <x-heroicon-s-star class="w-6 h-6 mr-1 float-left mx-auto my-auto"/>
-        <x-heroicon-s-star class="w-6 h-6 mr-1 float-left mx-auto my-auto"/>
+        @for($i = 0; $i < $data->stars; $i++)
+          <x-heroicon-s-star class="w-6 h-6 mr-1 float-left mx-auto my-auto"/>
+        @endfor
       </div>
   </div>
 
@@ -63,7 +61,22 @@
   </div>
 
 
-  <div class="mx-auto w-full ml-20 md:flex-1 mt-20 bg-gray-100">MAIN
+  <div class="mx-auto w-full md:ml-20 md:flex-1 md:mt-20 p-4">MAIN
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis ullamcorper libero nec convallis. Pellentesque lobortis ornare elit, sed ultrices lorem scelerisque porttitor. Nunc sed nisi et massa faucibus fermentum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum fringilla ut eros sed varius. Donec fringilla nisl ut lorem ullamcorper malesuada. Nullam dolor diam, luctus eget bibendum porttitor, fermentum et nisl. Donec eleifend dictum risus in aliquam. Donec scelerisque mi vel neque blandit, quis suscipit diam pellentesque. Aenean pulvinar molestie felis, et blandit massa ultricies nec. Maecenas tellus nibh, bibendum eu leo ac, aliquam laoreet nunc. Phasellus sodales tellus nec fringilla pellentesque.</p>
+    <br>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis ullamcorper libero nec convallis. Pellentesque lobortis ornare elit, sed ultrices lorem scelerisque porttitor. Nunc sed nisi et massa faucibus fermentum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum fringilla ut eros sed varius. Donec fringilla nisl ut lorem ullamcorper malesuada. Nullam dolor diam, luctus eget bibendum porttitor, fermentum et nisl. Donec eleifend dictum risus in aliquam. Donec scelerisque mi vel neque blandit, quis suscipit diam pellentesque. Aenean pulvinar molestie felis, et blandit massa ultricies nec. Maecenas tellus nibh, bibendum eu leo ac, aliquam laoreet nunc. Phasellus sodales tellus nec fringilla pellentesque.</p>
+        <br>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis ullamcorper libero nec convallis. Pellentesque lobortis ornare elit, sed ultrices lorem scelerisque porttitor. Nunc sed nisi et massa faucibus fermentum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum fringilla ut eros sed varius. Donec fringilla nisl ut lorem ullamcorper malesuada. Nullam dolor diam, luctus eget bibendum porttitor, fermentum et nisl. Donec eleifend dictum risus in aliquam. Donec scelerisque mi vel neque blandit, quis suscipit diam pellentesque. Aenean pulvinar molestie felis, et blandit massa ultricies nec. Maecenas tellus nibh, bibendum eu leo ac, aliquam laoreet nunc. Phasellus sodales tellus nec fringilla pellentesque.</p>
+        <br>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis ullamcorper libero nec convallis. Pellentesque lobortis ornare elit, sed ultrices lorem scelerisque porttitor. Nunc sed nisi et massa faucibus fermentum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum fringilla ut eros sed varius. Donec fringilla nisl ut lorem ullamcorper malesuada. Nullam dolor diam, luctus eget bibendum porttitor, fermentum et nisl. Donec eleifend dictum risus in aliquam. Donec scelerisque mi vel neque blandit, quis suscipit diam pellentesque. Aenean pulvinar molestie felis, et blandit massa ultricies nec. Maecenas tellus nibh, bibendum eu leo ac, aliquam laoreet nunc. Phasellus sodales tellus nec fringilla pellentesque.</p>
+           <br>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis ullamcorper libero nec convallis. Pellentesque lobortis ornare elit, sed ultrices lorem scelerisque porttitor. Nunc sed nisi et massa faucibus fermentum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum fringilla ut eros sed varius. Donec fringilla nisl ut lorem ullamcorper malesuada. Nullam dolor diam, luctus eget bibendum porttitor, fermentum et nisl. Donec eleifend dictum risus in aliquam. Donec scelerisque mi vel neque blandit, quis suscipit diam pellentesque. Aenean pulvinar molestie felis, et blandit massa ultricies nec. Maecenas tellus nibh, bibendum eu leo ac, aliquam laoreet nunc. Phasellus sodales tellus nec fringilla pellentesque.</p>
+           <br>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis ullamcorper libero nec convallis. Pellentesque lobortis ornare elit, sed ultrices lorem scelerisque porttitor. Nunc sed nisi et massa faucibus fermentum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum fringilla ut eros sed varius. Donec fringilla nisl ut lorem ullamcorper malesuada. Nullam dolor diam, luctus eget bibendum porttitor, fermentum et nisl. Donec eleifend dictum risus in aliquam. Donec scelerisque mi vel neque blandit, quis suscipit diam pellentesque. Aenean pulvinar molestie felis, et blandit massa ultricies nec. Maecenas tellus nibh, bibendum eu leo ac, aliquam laoreet nunc. Phasellus sodales tellus nec fringilla pellentesque.</p>
+           <br>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis ullamcorper libero nec convallis. Pellentesque lobortis ornare elit, sed ultrices lorem scelerisque porttitor. Nunc sed nisi et massa faucibus fermentum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum fringilla ut eros sed varius. Donec fringilla nisl ut lorem ullamcorper malesuada. Nullam dolor diam, luctus eget bibendum porttitor, fermentum et nisl. Donec eleifend dictum risus in aliquam. Donec scelerisque mi vel neque blandit, quis suscipit diam pellentesque. Aenean pulvinar molestie felis, et blandit massa ultricies nec. Maecenas tellus nibh, bibendum eu leo ac, aliquam laoreet nunc. Phasellus sodales tellus nec fringilla pellentesque.</p>
+           <br>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis ullamcorper libero nec convallis. Pellentesque lobortis ornare elit, sed ultrices lorem scelerisque porttitor. Nunc sed nisi et massa faucibus fermentum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum fringilla ut eros sed varius. Donec fringilla nisl ut lorem ullamcorper malesuada. Nullam dolor diam, luctus eget bibendum porttitor, fermentum et nisl. Donec eleifend dictum risus in aliquam. Donec scelerisque mi vel neque blandit, quis suscipit diam pellentesque. Aenean pulvinar molestie felis, et blandit massa ultricies nec. Maecenas tellus nibh, bibendum eu leo ac, aliquam laoreet nunc. Phasellus sodales tellus nec fringilla pellentesque.</p>
     {{ $data->description }}
   </div>
 

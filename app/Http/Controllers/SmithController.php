@@ -18,8 +18,8 @@ class SmithController extends Controller
      */
     public function index(SmithService $smithService, HelperService $helperService)
     {
-        $data = $smithService->indexCache('index_smiths', 3600);
-
+        //$data = $smithService->indexCache('index_smiths', 3600);
+        $data = Smith::where('name', '<>', NULL)->orderBy('view_count', 'DESC')->paginate(20);
         $smithService->generateSlugs($helperService);
 
         return view('smith.index', ['data' => $data]);

@@ -1,4 +1,7 @@
-<x-app-layout>
+@extends('layouts.master')
+
+@section('body')
+<x-head height="calc(100vh / 3 * 1)" img="https://wallpaperaccess.com/full/14399.jpg" title="Profile" text="" />
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Profile') }}
@@ -42,4 +45,4 @@
             @endif
         </div>
     </div>
-</x-app-layout>
+@endsection

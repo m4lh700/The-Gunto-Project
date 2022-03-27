@@ -1,6 +1,6 @@
 <header class="md:h-2/3 overflow-hidden relative" x-data="{ navBarScroll: false }">
 
-  <nav class="shadow dark:bg-gray-800 fixed w-screen text-white ease-in-out z-5" :class="{ 'bg-white text-black shadow transition duration-200' : navBarScroll }"
+  <nav class="shadow dark:bg-gray-800 fixed w-screen text-white ease-in-out z-10" :class="{ 'bg-white text-black shadow transition duration-200' : navBarScroll }"
   @scroll.window="navBarScroll = (window.pageYOffset > 20) ? true : false">
   <div class="container flex flex-wrap justify-between items-center mx-auto">
     <a href="#" class="flex items-center">
@@ -34,15 +34,44 @@
           <a href="#resume" class="text-xl block py-2 pr-4 pl-3 font-bold uppercase hover:text-teal-500"><x-heroicon-o-book-open class="w-6 h-6 mr-1 float-left"/>Blog</a>
         </li>
         <!-- End Nav item -->
+        @if(Auth::user())
         <!-- Nav item -->
-        <li class="transition ease-in-out py-4  bg-theme-black h-full  hover:bg-theme-black duration-100">
-          <a href="{{ route('login') }}" class="text-xl block py-2 pr-4 pl-3 font-bold uppercase hover:text-teal-500"><x-heroicon-o-login class="w-6 h-6 mr-1 float-left"/>Login</a>
-        </li>
+        <div x-data="{ dropdownOpen: false }"  class="transition ease-in-out py-4  bg-theme-black h-full  hover:bg-theme-black duration-100">
+            <button @click="dropdownOpen = ! dropdownOpen" class="block h-8 w-8 rounded-full overflow-hidden shadow focus:outline-none" aria-label="Account Knop">
+                @if (Auth::user()->avatar)
+                    <img class="h-full w-full object-cover" src="{{ Auth::user()->avatar }}" alt="User avatar">
+                @else
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-full w-full object-cover" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd" />
+                </svg>
+                @endif
+            </button>
+
+            <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
+
+            <div x-show="dropdownOpen" class="absolute right-24 mt-6 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10" style="display: none;">
+                <a href="{{ route('dashboard') }}" class="block text-center px-4 py-2 text-sm text-gray-700 hover:bg-teal-500 hover:text-white">Dashboard</a>
+                <a href="{{ route('profile.show') }}" class="block text-center px-4 py-2 text-sm text-gray-700 hover:bg-teal-500 hover:text-white">Profile</a>
+                <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="block px-4 py-2 w-full text-sm text-gray-700 hover:bg-teal-500 hover:text-white">
+                    {{ __('Log out') }}
+                </button>
+              </form>
+            </div>
+        </div>
         <!-- End Nav item -->
-      </ul>
+        @else
+        <li class="transition ease-in-out py-4  bg-theme-black h-full  hover:bg-theme-black duration-100">
+          <a href="{{ route('login') }}" class="text-xl block py-2 pr-4 pl-3 font-bold uppercase hover:text-teal-500"><x-heroicon-o-login class="w-6 h-6 mr-1 float-left"/>Log in</a>
+        </li>
+        @endif
+
       <!-- End Menu items -->
     </div>
   </div>
 </nav>
+
+
 
 </header>
