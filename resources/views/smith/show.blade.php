@@ -3,81 +3,20 @@
 @section('body')
   <x-head height="calc(100vh / 3 * 1)" img="https://wallpaperaccess.com/full/14399.jpg" title="Smith: {{ $data->name }}" text="" />
 
-<div class="h-screen container mx-auto flex justify-between">
+<div class="h-screen container mx-auto flex justify-between" x-data="{
+      openTab: 1,
+      activeClasses: 'border-l border-t border-r rounded-t text-blue-700',
+      inactiveClasses: 'text-blue-500 hover:text-blue-800'
+    }">
+  <!-- Smith profile component-->
+  <x-smithprofile :data=$data />
+  <!-- End Smith profile component-->
 
-  <div class="hidden lg:sticky top-28 lg:block lg:self-start mt-20">
-    <div class="justify-center text-center mb-14">
-      @if ($data->avatar)
-          <img class="mx-auto my-auto h-32 w-32 rounded-full overflow-hidden shadow mb-4" src="{{ $data->avatar }}" alt="User avatar">
-      @else
-          <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto my-auto h-32 w-32 rounded-full overflow-hidden shadow mb-4 bg-gray-100" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd" />
-          </svg>
-      @endif
-      <span class="font-bold text-xl">{{ $data->name }}</span>
-      <br>
-      <div class="relative flex">
-        @for($i = 0; $i < $data->stars; $i++)
-          <x-heroicon-s-star class="w-6 h-6 mr-1 float-left mx-auto my-auto"/>
-        @endfor
-      </div>
-  </div>
-
-    <ul class="hide-scrollbar mobile:hidden lg:max-h-[80vh] lg:overflow-y-auto">
-      <li>
-        <a href="{{ route('indexsmiths') }}" class="mb-[5px] flex items-center rounded-xl border py-25 px-6 bg-blue-400 hover:bg-blue-lighter text-white text-lg">
-          <x-heroicon-s-arrow-left class="w-6 h-6 mr-1 float-left"/>Back
-        </a>
-      </li>
-    </ul>
-    <ul class="hide-scrollbar mobile:hidden lg:max-h-[80vh] lg:overflow-y-auto">
-      <li>
-        <a href="" class="mb-[5px] flex items-center rounded-xl border py-25 px-6 bg-teal-500 hover:bg-blue-lighter text-white text-lg">
-          <x-heroicon-s-information-circle class="w-6 h-6 mr-1 float-left"/>About
-        </a>
-      </li>
-    </ul>
-    <ul class="hide-scrollbar mobile:hidden lg:max-h-[80vh] lg:overflow-y-auto">
-      <li>
-        <a href="" class="mb-[5px] flex items-center rounded-xl border py-25 px-6 bg-teal-500 hover:bg-blue-lighter text-white text-lg">
-          <x-heroicon-s-star class="w-6 h-6 mr-1 float-left"/>Swords
-        </a>
-      </li>
-    </ul>
-    <ul class="hide-scrollbar mobile:hidden lg:max-h-[80vh] lg:overflow-y-auto">
-      <li>
-        <a href="" class="mb-[5px] flex items-center rounded-xl border py-25 px-6 bg-teal-500 hover:bg-blue-lighter text-white text-lg">
-          <x-heroicon-s-chat-alt-2 class="w-6 h-6 mr-1 float-left"/>Discussion
-        </a>
-      </li>
-    </ul>
-    <ul class="hide-scrollbar mobile:hidden lg:max-h-[80vh] lg:overflow-y-auto">
-      <li>
-        <a href="" class="mb-[5px] flex items-center rounded-xl border py-25 px-6 bg-teal-500 hover:bg-blue-lighter text-white text-lg">
-          <x-heroicon-s-photograph class="w-6 h-6 mr-1 float-left"/>Oshigata
-        </a>
-      </li>
-    </ul>
-  </div>
-
-
-  <div class="mx-auto w-full md:ml-20 md:flex-1 md:mt-20 p-4">MAIN
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis ullamcorper libero nec convallis. Pellentesque lobortis ornare elit, sed ultrices lorem scelerisque porttitor. Nunc sed nisi et massa faucibus fermentum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum fringilla ut eros sed varius. Donec fringilla nisl ut lorem ullamcorper malesuada. Nullam dolor diam, luctus eget bibendum porttitor, fermentum et nisl. Donec eleifend dictum risus in aliquam. Donec scelerisque mi vel neque blandit, quis suscipit diam pellentesque. Aenean pulvinar molestie felis, et blandit massa ultricies nec. Maecenas tellus nibh, bibendum eu leo ac, aliquam laoreet nunc. Phasellus sodales tellus nec fringilla pellentesque.</p>
-    <br>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis ullamcorper libero nec convallis. Pellentesque lobortis ornare elit, sed ultrices lorem scelerisque porttitor. Nunc sed nisi et massa faucibus fermentum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum fringilla ut eros sed varius. Donec fringilla nisl ut lorem ullamcorper malesuada. Nullam dolor diam, luctus eget bibendum porttitor, fermentum et nisl. Donec eleifend dictum risus in aliquam. Donec scelerisque mi vel neque blandit, quis suscipit diam pellentesque. Aenean pulvinar molestie felis, et blandit massa ultricies nec. Maecenas tellus nibh, bibendum eu leo ac, aliquam laoreet nunc. Phasellus sodales tellus nec fringilla pellentesque.</p>
-        <br>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis ullamcorper libero nec convallis. Pellentesque lobortis ornare elit, sed ultrices lorem scelerisque porttitor. Nunc sed nisi et massa faucibus fermentum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum fringilla ut eros sed varius. Donec fringilla nisl ut lorem ullamcorper malesuada. Nullam dolor diam, luctus eget bibendum porttitor, fermentum et nisl. Donec eleifend dictum risus in aliquam. Donec scelerisque mi vel neque blandit, quis suscipit diam pellentesque. Aenean pulvinar molestie felis, et blandit massa ultricies nec. Maecenas tellus nibh, bibendum eu leo ac, aliquam laoreet nunc. Phasellus sodales tellus nec fringilla pellentesque.</p>
-        <br>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis ullamcorper libero nec convallis. Pellentesque lobortis ornare elit, sed ultrices lorem scelerisque porttitor. Nunc sed nisi et massa faucibus fermentum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum fringilla ut eros sed varius. Donec fringilla nisl ut lorem ullamcorper malesuada. Nullam dolor diam, luctus eget bibendum porttitor, fermentum et nisl. Donec eleifend dictum risus in aliquam. Donec scelerisque mi vel neque blandit, quis suscipit diam pellentesque. Aenean pulvinar molestie felis, et blandit massa ultricies nec. Maecenas tellus nibh, bibendum eu leo ac, aliquam laoreet nunc. Phasellus sodales tellus nec fringilla pellentesque.</p>
-           <br>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis ullamcorper libero nec convallis. Pellentesque lobortis ornare elit, sed ultrices lorem scelerisque porttitor. Nunc sed nisi et massa faucibus fermentum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum fringilla ut eros sed varius. Donec fringilla nisl ut lorem ullamcorper malesuada. Nullam dolor diam, luctus eget bibendum porttitor, fermentum et nisl. Donec eleifend dictum risus in aliquam. Donec scelerisque mi vel neque blandit, quis suscipit diam pellentesque. Aenean pulvinar molestie felis, et blandit massa ultricies nec. Maecenas tellus nibh, bibendum eu leo ac, aliquam laoreet nunc. Phasellus sodales tellus nec fringilla pellentesque.</p>
-           <br>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis ullamcorper libero nec convallis. Pellentesque lobortis ornare elit, sed ultrices lorem scelerisque porttitor. Nunc sed nisi et massa faucibus fermentum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum fringilla ut eros sed varius. Donec fringilla nisl ut lorem ullamcorper malesuada. Nullam dolor diam, luctus eget bibendum porttitor, fermentum et nisl. Donec eleifend dictum risus in aliquam. Donec scelerisque mi vel neque blandit, quis suscipit diam pellentesque. Aenean pulvinar molestie felis, et blandit massa ultricies nec. Maecenas tellus nibh, bibendum eu leo ac, aliquam laoreet nunc. Phasellus sodales tellus nec fringilla pellentesque.</p>
-           <br>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis ullamcorper libero nec convallis. Pellentesque lobortis ornare elit, sed ultrices lorem scelerisque porttitor. Nunc sed nisi et massa faucibus fermentum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum fringilla ut eros sed varius. Donec fringilla nisl ut lorem ullamcorper malesuada. Nullam dolor diam, luctus eget bibendum porttitor, fermentum et nisl. Donec eleifend dictum risus in aliquam. Donec scelerisque mi vel neque blandit, quis suscipit diam pellentesque. Aenean pulvinar molestie felis, et blandit massa ultricies nec. Maecenas tellus nibh, bibendum eu leo ac, aliquam laoreet nunc. Phasellus sodales tellus nec fringilla pellentesque.</p>
-           <br>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis ullamcorper libero nec convallis. Pellentesque lobortis ornare elit, sed ultrices lorem scelerisque porttitor. Nunc sed nisi et massa faucibus fermentum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum fringilla ut eros sed varius. Donec fringilla nisl ut lorem ullamcorper malesuada. Nullam dolor diam, luctus eget bibendum porttitor, fermentum et nisl. Donec eleifend dictum risus in aliquam. Donec scelerisque mi vel neque blandit, quis suscipit diam pellentesque. Aenean pulvinar molestie felis, et blandit massa ultricies nec. Maecenas tellus nibh, bibendum eu leo ac, aliquam laoreet nunc. Phasellus sodales tellus nec fringilla pellentesque.</p>
-    {{ $data->description }}
+  <div class="mx-auto w-full md:ml-20 md:flex-1 md:mt-20 md:p-0 p-4">
+    <div x-show="openTab === 1">@include('smith/tab_about')</div>
+    <div x-show="openTab === 2">@include('smith/tab_swords')</div>
+    <div x-show="openTab === 3">@include('smith/tab_discussion')</div>
+    <div x-show="openTab === 4">@include('smith/tab_oshigata')</div>
   </div>
 
 </div>

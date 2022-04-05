@@ -9,22 +9,20 @@
       @endif
       <div class="px-6 py-4">
         <div class="font-bold text-xl mb-2">{{ $smith->name }}</div>
+        @for($i = 0; $i < $smith->stars; $i++)
+          <x-heroicon-s-star class="w-6 h-6 mr-1 float-left mx-auto my-auto"/>
+        @endfor
+        <br>
         <p class="text-gray-700 text-base">
-          {{ $smith->description }}
+          {{ $smith->short_description }}
         </p>
       </div>
       <div class="px-6 pt-4 pb-2">
         @if($smith->rjt)
           <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#rjt</span>
         @endif
-        @if($smith->view_count)
-          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Views: {{ $smith->view_count }}</span>
-        @else
-          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Views: 0</span>
-        @endif
-        @for($i = 0; $i < $smith->stars; $i++)
-          <x-heroicon-s-star class="w-6 h-6 mr-1 float-left mx-auto my-auto"/>
-        @endfor
+          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Views: @if($smith->view_count) {{ $smith->view_count }} @else 0 @endif</span>
+          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Swords: @if($smith->swords->count()) {{ $smith->swords->count() }} @else 0 @endif</span>
       </div>
   </div>
 </a>

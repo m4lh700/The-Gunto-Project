@@ -25,12 +25,22 @@ class SmithService
   }
 
 
-  public function indexCache(string $key, int $duration) : object
+  public function indexCache(string $key, int $duration)
   {
     if(Cache::has('index_smiths')){
         return $data = Cache::get('index_smiths');
     } else {
         $data = Smith::where('name', '<>', NULL)->orderBy('view_count', 'DESC')->get();//with('swords')->get();
+        Cache::add($key, $data, $seconds = $duration);
+        return Cache::get($key);
+    }
+  }
+
+  public function addOrGetCache(string $key, int $duration, object $data)
+  {
+    if(Cache::has($key)){
+        return $data = Cache::get($key);
+    } else {
         Cache::add($key, $data, $seconds = $duration);
         return Cache::get($key);
     }

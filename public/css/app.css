@@ -1171,6 +1171,9 @@ select {
 .ml-20 {
   margin-left: 5rem;
 }
+.mr-0 {
+  margin-right: 0px;
+}
 .block {
   display: block;
 }
@@ -2540,6 +2543,14 @@ select {
     margin-top: 5rem;
   }
 
+  .md\:mr-3 {
+    margin-right: 0.75rem;
+  }
+
+  .md\:mb-0 {
+    margin-bottom: 0px;
+  }
+
   .md\:block {
     display: block;
   }
@@ -2556,8 +2567,16 @@ select {
     height: 66.666667%;
   }
 
+  .md\:h-40 {
+    height: 10rem;
+  }
+
   .md\:w-auto {
     width: auto;
+  }
+
+  .md\:w-\[50rem\] {
+    width: 50rem;
   }
 
   .md\:flex-1 {
@@ -2578,6 +2597,10 @@ select {
 
   .md\:flex-row {
     flex-direction: row;
+  }
+
+  .md\:flex-nowrap {
+    flex-wrap: nowrap;
   }
 
   .md\:gap-6 {

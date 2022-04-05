@@ -36,7 +36,7 @@
         <!-- End Nav item -->
         @if(Auth::user())
         <!-- Nav item -->
-        <div x-data="{ dropdownOpen: false }"  class="transition ease-in-out py-4  bg-theme-black h-full  hover:bg-theme-black duration-100">
+        <li x-data="{ dropdownOpen: false }"  class="transition ease-in-out py-4  bg-theme-black h-full  hover:bg-theme-black duration-100">
             <button @click="dropdownOpen = ! dropdownOpen" class="block h-8 w-8 rounded-full overflow-hidden shadow focus:outline-none" aria-label="Account Knop">
                 @if (Auth::user()->avatar)
                     <img class="h-full w-full object-cover" src="{{ Auth::user()->avatar }}" alt="User avatar">
@@ -59,14 +59,14 @@
                 </button>
               </form>
             </div>
-        </div>
+        </li>
         <!-- End Nav item -->
         @else
         <li class="transition ease-in-out py-4  bg-theme-black h-full  hover:bg-theme-black duration-100">
           <a href="{{ route('login') }}" class="text-xl block py-2 pr-4 pl-3 font-bold uppercase hover:text-teal-500"><x-heroicon-o-login class="w-6 h-6 mr-1 float-left"/>Log in</a>
         </li>
         @endif
-
+      </ul>
       <!-- End Menu items -->
     </div>
   </div>

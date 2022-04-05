@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="description" content="This ultimate guide cover all the important aspects of blogging. Find out how to set up a succesful blog or to make yours even better!"/>
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 

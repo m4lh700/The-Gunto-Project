@@ -19,7 +19,7 @@ class SmithController extends Controller
     public function index(SmithService $smithService, HelperService $helperService)
     {
         //$data = $smithService->indexCache('index_smiths', 3600);
-        $data = Smith::where('name', '<>', NULL)->orderBy('view_count', 'DESC')->paginate(20);
+        $data = Smith::where('name', '<>', NULL)->with('swords')->orderBy('view_count', 'DESC')->paginate(20);
         $smithService->generateSlugs($helperService);
 
         return view('smith.index', ['data' => $data]);
@@ -31,10 +31,12 @@ class SmithController extends Controller
      *
      * @return \Illuminate\Http\View
      */
-    public function show(string $slug){
-        $smith = Smith::where('slug', $slug)->first();//->with('swords')->first();
+    public function show(string $slug, SmithService $smithService){
+        $smith = Smith::where('slug', $slug)->with('swords')->first();//->with('swords')->first();
         $smith->view_count += 1;
         $smith->save();
+        //$smithService->addOrGetCache('show_smiths', 3600, $smith);
+
         return view('smith.show', ['data' => $smith]);
     }
 }
