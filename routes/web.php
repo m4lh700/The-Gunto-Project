@@ -24,7 +24,7 @@ Route::get('smiths', [SmithController::class, 'index'])->name('indexsmiths');
 Route::get('smiths/favorites', [SmithController::class, 'favorites'])->middleware(['auth'])->name('favoritesmiths');
 route::get('smiths/favorites/remove/{id}', [SmithController::class, 'removeFavorite'])->middleware(['auth'])->name('removefavoritesmith');
 route::get('smiths/favorites/add/{id}', [SmithController::class, 'addFavorite'])->middleware(['auth'])->name('addfavoritesmith');
-Route::get('smiths/{slug}', [SmithController::class, 'show'])->name('showsmith');
+Route::get('smiths/{slug?}', [SmithController::class, 'show'])->name('showsmith');
 
 Route::get('swords/submit/{slug?}', [SwordController::class, 'submitSword'])->middleware(['auth'])->name('swordsubmit');
 

@@ -25,8 +25,8 @@
 
   <ul class="hide-scrollbar mobile:hidden lg:max-h-[80vh] lg:overflow-y-auto">
     <li>
-      <a href="{{ url()->previous() }}" class="mb-[5px] flex items-center rounded-xl border py-25 px-6 bg-blue-500 hover:bg-blue-400 text-white text-lg">
-        <x-heroicon-s-arrow-left class="w-6 h-6 mr-1 float-left"/>Back
+      <a href="{{ route('indexsmiths') }}" class="mb-[5px] flex items-center rounded-xl border py-25 px-6 bg-blue-500 hover:bg-blue-400 text-white text-lg">
+        <x-heroicon-s-arrow-left class="w-6 h-6 mr-1 float-left"/>Back to list
       </a>
     </li>
   </ul>

@@ -38,9 +38,11 @@ class SmithController extends Controller
         $smith->view_count += 1;
         $smith->save();
         $nextSmith = Smith::where('id', $smith->id + 1)->first('slug');
+        $previousSmith = Smith::where('id', $smith->id - 1)->first('slug');
+        $previousSmith ? $prev = $previousSmith->slug : $prev = NULL;
         //$smithService->addOrGetCache('show_smiths', 3600, $smith);
 
-        return view('smith.show', ['data' => $smith, 'nextsmith' => $nextSmith->slug]);
+        return view('smith.show', ['data' => $smith, 'nextsmith' => $nextSmith->slug, 'previoussmith' => $prev]);
     }
 
     /**

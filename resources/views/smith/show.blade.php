@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('body')
-  <x-head height="calc(100vh / 3 * 1)" img="https://wallpaperaccess.com/full/14399.jpg" title="{{ $data->name }}" text="" back="true" nextsmith={{$nextsmith}} />
+  <x-head height="calc(100vh / 3 * 1)" img="https://wallpaperaccess.com/full/14399.jpg" title="{{ $data->name }}" text="" back="true" nextsmith={{$nextsmith}} previoussmith={{$previoussmith}} />
 
 <div class="hidden container mx-auto bg-teal-500 h-28 md:mt-[-60px] md:flex md:flex-row p-4 text-white shadow-lg">
   <div class="basis-1/4 p-4 border-r border-teal-400 my-auto">@if($data->rjt) RJT @endif</div>
