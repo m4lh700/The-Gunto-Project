@@ -17,7 +17,7 @@ class SmithController extends Controller
      *
      * @return \Illuminate\Http\View
      */
-    public function index(SmithService $smithService, HelperService $helperService)
+    public function index(SmithService $smithService, HelperService $helperService) : object
     {
         //$data = $smithService->indexCache('index_smiths', 3600);
         $data = Smith::where('name', '<>', NULL)->with('swords')->orderBy('view_count', 'DESC')->paginate(20);
@@ -32,14 +32,15 @@ class SmithController extends Controller
      *
      * @return \Illuminate\Http\View
      */
-    public function show(string $slug, SmithService $smithService)
+    public function show(string $slug, SmithService $smithService) : object
     {
         $smith = Smith::where('slug', $slug)->with('swords')->first();//->with('swords')->first();
         $smith->view_count += 1;
         $smith->save();
+        $nextSmith = Smith::where('id', $smith->id + 1)->first('slug');
         //$smithService->addOrGetCache('show_smiths', 3600, $smith);
 
-        return view('smith.show', ['data' => $smith]);
+        return view('smith.show', ['data' => $smith, 'nextsmith' => $nextSmith->slug]);
     }
 
     /**
@@ -47,14 +48,15 @@ class SmithController extends Controller
      *
      * @return \Illuminate\Http\View
      */
-    public function favorites()
+    public function favorites() : object
     {
         $smiths = Favoritesmith::where('user_id', auth()->user()->id)->with('smith')->orderBy('created_at', 'DESC')->get();
         //dd($smiths);
         return view('smith.favorites', ['data' => $smiths]);
     }
 
-    public function removeFavorite(int $id){
+    public function removeFavorite(int $id) : object
+    {
         $smithfav = Favoritesmith::where('user_id', auth()->user()->id)->where('smith_id', $id)->first();
         $smith = Smith::where('id', $id)->first('name');
         $smithfav->delete();
@@ -64,21 +66,22 @@ class SmithController extends Controller
         return redirect()->route('favoritesmiths');
     }
 
-    public function addFavorite(int $id)
+    public function addFavorite(int $id) : object
     {
         $checkFav = Favoritesmith::where('user_id', auth()->user()->id)->where('smith_id', $id)->first();
         $smithdata = Smith::where('id', $id)->first('name');
-        if(!$checkFav){
+
+        if(is_null($checkFav)){
             $smith = new Favoritesmith;
             $smith->smith_id = $id;
             $smith->user_id = auth()->user()->id;
-            $smith->save;
+            $smith->save();
             toast()->success('Smith('. $smithdata->name .') added to favorites!')->pushOnNextPage();
         } else {
             toast()->warning('Smith('. $smithdata->name .') already in favorite list!')->pushOnNextPage();
         }
 
-        return redirect()->route('indexsmiths');
+        return redirect()->back();
     }
 
 }

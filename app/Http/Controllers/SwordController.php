@@ -19,4 +19,11 @@ class SwordController extends Controller
     {
       return view('swords.index', ['data' => $data]);
     }
+
+    public function submitSword(string $slug = NULL)
+    {
+      $slug ? $data = Smith::where('slug', $slug) : $data = NULL;
+      return view('sword.submit', ['data' => $data]);
+    }
+
 }
