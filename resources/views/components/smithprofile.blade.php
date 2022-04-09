@@ -25,35 +25,35 @@
 
   <ul class="hide-scrollbar mobile:hidden lg:max-h-[80vh] lg:overflow-y-auto">
     <li>
-      <a href="{{ route('indexsmiths') }}" class="mb-[5px] flex items-center rounded-xl border py-25 px-6 bg-blue-400 hover:bg-blue-500 text-white text-lg">
+      <a href="{{ url()->previous() }}" class="mb-[5px] flex items-center rounded-xl border py-25 px-6 bg-blue-400 hover:bg-blue-500 text-white text-lg">
         <x-heroicon-s-arrow-left class="w-6 h-6 mr-1 float-left"/>Back
       </a>
     </li>
   </ul>
   <ul class="hide-scrollbar mobile:hidden lg:max-h-[80vh] lg:overflow-y-auto">
     <li @click="openTab = 1" :class="{ '-mb-px': openTab === 1 }">
-      <a :class="openTab === 1 ? activeClasses : inactiveClasses" href="#" class="mb-[5px] flex items-center rounded-xl border py-25 px-6 bg-teal-500 hover:bg-teal-700 text-white text-lg">
+      <a :class="openTab === 1 ? activeClasses : inactiveClasses" href="#about" class="mb-[5px] flex items-center rounded-xl border py-25 px-6 bg-teal-500 hover:bg-teal-700 text-white text-lg">
         <x-heroicon-s-information-circle class="w-6 h-6 mr-1 float-left"/>About
       </a>
     </li>
   </ul>
   <ul class="hide-scrollbar mobile:hidden lg:max-h-[80vh] lg:overflow-y-auto">
     <li @click="openTab = 2" :class="{ '-mb-px': openTab === 2 }">
-      <a :class="openTab === 2 ? activeClasses : inactiveClasses" href="#" class="mb-[5px] flex items-center rounded-xl border py-25 px-6 bg-teal-500 hover:bg-teal-700 text-white text-lg">
+      <a :class="openTab === 2 ? activeClasses : inactiveClasses" href="#swords" class="mb-[5px] flex items-center rounded-xl border py-25 px-6 bg-teal-500 hover:bg-teal-700 text-white text-lg">
         <x-heroicon-s-star class="w-6 h-6 mr-1 float-left"/>Swords ({{ $data->swords->count() }})
       </a>
     </li>
   </ul>
   <ul class="hide-scrollbar mobile:hidden lg:max-h-[80vh] lg:overflow-y-auto">
     <li @click="openTab = 3" :class="{ '-mb-px': openTab === 3 }">
-      <a :class="openTab === 3 ? activeClasses : inactiveClasses" href="#" class="mb-[5px] flex items-center rounded-xl border py-25 px-6 bg-teal-500 hover:bg-teal-700 text-white text-lg">
+      <a :class="openTab === 3 ? activeClasses : inactiveClasses" href="#discussion" class="mb-[5px] flex items-center rounded-xl border py-25 px-6 bg-teal-500 hover:bg-teal-700 text-white text-lg">
         <x-heroicon-s-chat-alt-2 class="w-6 h-6 mr-1 float-left"/>Discussion
       </a>
     </li>
   </ul>
   <ul class="hide-scrollbar mobile:hidden lg:max-h-[80vh] lg:overflow-y-auto">
     <li @click="openTab = 4" :class="{ '-mb-px': openTab === 4 }">
-      <a :class="openTab === 4 ? activeClasses : inactiveClasses" href="#" class="mb-[5px] flex items-center rounded-xl border py-25 px-6 bg-teal-500 hover:bg-teal-700 text-white text-lg">
+      <a :class="openTab === 4 ? activeClasses : inactiveClasses" href="#oshigata" class="mb-[5px] flex items-center rounded-xl border py-25 px-6 bg-teal-500 hover:bg-teal-700 text-white text-lg">
         <x-heroicon-s-photograph class="w-6 h-6 mr-1 float-left"/>Oshigata
       </a>
     </li>

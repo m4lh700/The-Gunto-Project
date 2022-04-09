@@ -20,8 +20,14 @@
         </li>
         <!-- End Nav item -->
         <!-- Nav item -->
-        <li class="transition ease-in-out py-4  hover:bg-theme-black duration-100">
-          <a href="{{ route('indexsmiths') }}" class="text-xl block py-2 pr-4 pl-3 font-bold uppercase hover:text-teal-500"><x-heroicon-o-user class="w-6 h-6 mr-1 float-left"/>Smiths</a>
+        <li x-data="{openSmiths: false}" @mouseover.away="openSmiths = false" class="transition ease-in-out py-4  hover:bg-theme-black duration-100">
+          <a @mouseover="openSmiths = true" href="{{ route('indexsmiths') }}" class="text-xl block py-2 pr-4 pl-3 font-bold uppercase hover:text-teal-500"><x-heroicon-o-user class="w-6 h-6 mr-1 float-left"/>Smiths</a>
+          @if(Auth::user())
+          <div x-show="openSmiths" @mouseout="open = false" class="absolute w-48 bg-white rounded-md overflow-hidden shadow-xl z-10 text-black">
+            <a href="{{ route('indexsmiths') }}" class="block text-center px-4 py-2 text-sm text-gray-700 hover:bg-teal-500 hover:text-white">All smiths</a>
+            <a href="{{ route('favoritesmiths') }}" class="block text-center px-4 py-2 text-sm text-gray-700 hover:bg-teal-500 hover:text-white">My favorites</a>
+          </div>
+          @endif
         </li>
         <!-- End Nav item -->
         <!-- Nav item -->

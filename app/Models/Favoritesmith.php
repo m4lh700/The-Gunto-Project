@@ -11,4 +11,9 @@ class Favoritesmith extends Model
 
     protected $table = 'favoritesmiths';
 
+    public function smith()
+    {
+        return $this->hasOne(Smith::class, 'id', 'smith_id');
+    }
+
 }

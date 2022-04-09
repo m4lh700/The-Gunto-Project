@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Smith;
+use App\Models\Favoritesmith;
 use App\Services\SmithService;
 use App\Services\HelperService;
 use view;
@@ -31,7 +32,8 @@ class SmithController extends Controller
      *
      * @return \Illuminate\Http\View
      */
-    public function show(string $slug, SmithService $smithService){
+    public function show(string $slug, SmithService $smithService)
+    {
         $smith = Smith::where('slug', $slug)->with('swords')->first();//->with('swords')->first();
         $smith->view_count += 1;
         $smith->save();
@@ -39,4 +41,44 @@ class SmithController extends Controller
 
         return view('smith.show', ['data' => $smith]);
     }
+
+    /**
+     * Display a single listing of the favorites resource.
+     *
+     * @return \Illuminate\Http\View
+     */
+    public function favorites()
+    {
+        $smiths = Favoritesmith::where('user_id', auth()->user()->id)->with('smith')->orderBy('created_at', 'DESC')->get();
+        //dd($smiths);
+        return view('smith.favorites', ['data' => $smiths]);
+    }
+
+    public function removeFavorite(int $id){
+        $smithfav = Favoritesmith::where('user_id', auth()->user()->id)->where('smith_id', $id)->first();
+        $smith = Smith::where('id', $id)->first('name');
+        $smithfav->delete();
+        toast()->success('Smith('. $smith->name .') removed from favorites!')->pushOnNextPage();
+        unset($smith);
+        unset($smithfav);
+        return redirect()->route('favoritesmiths');
+    }
+
+    public function addFavorite(int $id)
+    {
+        $checkFav = Favoritesmith::where('user_id', auth()->user()->id)->where('smith_id', $id)->first();
+        $smithdata = Smith::where('id', $id)->first('name');
+        if(!$checkFav){
+            $smith = new Favoritesmith;
+            $smith->smith_id = $id;
+            $smith->user_id = auth()->user()->id;
+            $smith->save;
+            toast()->success('Smith('. $smithdata->name .') added to favorites!')->pushOnNextPage();
+        } else {
+            toast()->warning('Smith('. $smithdata->name .') already in favorite list!')->pushOnNextPage();
+        }
+
+        return redirect()->route('indexsmiths');
+    }
+
 }
