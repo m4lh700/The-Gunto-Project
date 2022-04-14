@@ -9,6 +9,6 @@ class HomeController extends Controller
 {
     public function index() : object
     {
-        return view('home');
+        return view('home', ['metatitle' => NULL, 'metadescription' => NULL]);
     }
 }

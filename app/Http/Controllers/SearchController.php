@@ -32,7 +32,7 @@ class SearchController extends Controller
 
             $data = '';
 
-            return view('search.index', ['data' => $data]);
+            return view('search.index', ['data' => $data, 'metatitle' => NULL, 'metadescription' => NULL]);
         } catch (Exception $e) {
             echo $e->getMessage();
         }

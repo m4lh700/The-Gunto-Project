@@ -1,11 +1,11 @@
 @props(['data'])
 
-<div class="hidden lg:sticky top-28 lg:block lg:self-start mt-20">
+<div class="hidden md:sticky top-28 md:block md:self-start mt-20">
   <div class="justify-center text-center mb-14">
     @if ($data->avatar)
         <img class="mx-auto my-auto h-32 w-32 rounded-full overflow-hidden shadow mb-4" src="{{ $data->avatar }}" alt="User avatar">
     @else
-        <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto my-auto h-32 w-32 rounded-full overflow-hidden shadow mb-4 bg-gray-100" viewBox="0 0 20 20" fill="currentColor">
+        <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto my-auto h-32 w-32 rounded-full overflow-hidden shadow-lg mb-4 bg-gray-100" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd" />
         </svg>
     @endif

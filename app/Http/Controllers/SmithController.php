@@ -23,7 +23,7 @@ class SmithController extends Controller
         $data = Smith::where('name', '<>', NULL)->with('swords')->orderBy('view_count', 'DESC')->paginate(20);
         $smithService->generateSlugs($helperService);
 
-        return view('smith.index', ['data' => $data]);
+        return view('smith.index', ['data' => $data, 'metatitle' => NULL, 'metadescription' => NULL]);
     }
 
 
@@ -42,7 +42,7 @@ class SmithController extends Controller
         $previousSmith ? $prev = $previousSmith->slug : $prev = NULL;
         //$smithService->addOrGetCache('show_smiths', 3600, $smith);
 
-        return view('smith.show', ['data' => $smith, 'nextsmith' => $nextSmith->slug, 'previoussmith' => $prev]);
+        return view('smith.show', ['data' => $smith, 'nextsmith' => $nextSmith->slug, 'previoussmith' => $prev, 'metatitle' => $smith->name, 'metadescription' => NULL]);
     }
 
     /**
@@ -54,7 +54,7 @@ class SmithController extends Controller
     {
         $smiths = Favoritesmith::where('user_id', auth()->user()->id)->with('smith')->orderBy('created_at', 'DESC')->get();
         //dd($smiths);
-        return view('smith.favorites', ['data' => $smiths]);
+        return view('smith.favorites', ['data' => $smiths, 'metatitle' => NULL, 'metadescription' => NULL]);
     }
 
     public function removeFavorite(int $id) : object

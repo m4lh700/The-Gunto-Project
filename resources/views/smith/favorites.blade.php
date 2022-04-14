@@ -1,15 +1,15 @@
 @extends('layouts.master')
 
 @section('body')
-<x-head height="calc(100vh / 3 * 1)" img="https://wallpaperaccess.com/full/14399.jpg" title="My Favorite smiths" text="" searchbar=true />
+<x-head height="calc(100vh / 3 * 2)" img="https://wallpaperaccess.com/full/14399.jpg" title="My Favorite smiths" text="" searchbar=true />
 
-<div class="h-screen container mx-auto mt-4 p-4 md:p-0">
-  <div class="md:mt-20 grid grid-cols-1 md:grid-cols-4 gap-4 h-40">
+<div class="min-h-screen container mx-auto mt-4 p-4 md:p-0">
+  <div class="md:mt-20 grid grid-cols-1 md:grid-cols-4 gap-4">
     @foreach($data as $smith)
     <div>
         <a class="absolute inline-block bg-red-600 hover:bg-red-400 rounded-full text-sm font-semibold text-white m-2 py-1 px-2" href="{{ route('removefavoritesmith', ['id' => $smith->smith->id]) }}">&#10005;</a>
       <a href="{{ route('showsmith', ['slug' => $smith->smith->slug]) }}">
-        <div class="pt-8 max-w-sm rounded overflow-hidden shadow-lg bg-gray-100 hover:bg-teal-500 hover:text-white transition ease-in-out duration-300">
+        <div class="pt-8 max-w-sm rounded overflow-hidden shadow-lg bg-white hover:bg-teal-500 hover:text-white transition ease-in-out duration-300">
           @if($smith->smith->avatar)
             <!--<img class="hidden md:block h-48 w-96 object-cover" src="{{ $smith->smith->avatar}}" alt="{{ $smith->smith->name }}" loading=lazy>-->
           @else

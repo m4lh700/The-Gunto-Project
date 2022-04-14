@@ -23,7 +23,7 @@ class SwordController extends Controller
     public function submitSword(string $slug = NULL)
     {
       $slug ? $data = Smith::where('slug', $slug) : $data = NULL;
-      return view('sword.submit', ['data' => $data]);
+      return view('sword.submit', ['data' => $data, 'metatitle' => NULL, 'metadescription' => NULL]);
     }
 
 }

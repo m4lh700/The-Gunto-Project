@@ -1,4 +1,4 @@
-<h2 class="text-black text-2xl font-semibold uppercase md:text-3xl mb-4">About</h2>
+<h2 class="text-black dark:text-white text-center md:text-left text-2xl font-semibold uppercase md:text-3xl mb-4">About</h2>
 
 @if($data->description)
   {!! $data->description !!}
