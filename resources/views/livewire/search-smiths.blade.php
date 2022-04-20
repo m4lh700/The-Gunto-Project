@@ -7,7 +7,16 @@
     @if($searchresults)
     <ul class="appearance-none bg-white border-none rounded text-gray-700 leading-tight focus:outline-none absolute flex flex-row flex-wrap shadow basis-full my-auto w-full lg:w-[50rem]" style="top:462px;">
       @foreach($searchresults as $result)
-          <li class="hover:bg-teal-500 hover:text-white py-4 px-4 border" id="{{ $result->id }}" wire:click="selectOption( '{{$result['name']}}');">#{{ $result['name'] }}</li>
+          <li class="hover:bg-teal-500 hover:text-white py-4 px-4 border" id="{{ $result->id }}" wire:click="selectOption( '{{$result['name']}}');">
+            <p class="uppercase text-xl">#{{ $result['name'] }}</p>
+            @for($i = 0; $i < $result['stars']; $i++)
+              <x-heroicon-s-star class="w-6 h-6 mr-1 float-left mx-auto my-auto dark:text-black"/>
+            @endfor
+            <p class="font-thin text-sm">Views: @if($result['view_count'] > 0) {{ $result['view_count'] }} @else 0 @endif</p>
+            <p class="font-thin text-sm">Swords:
+              {{ $result->swords->count() }}
+            </p>
+          </li>
       @endforeach
     </ul>
     @endif
