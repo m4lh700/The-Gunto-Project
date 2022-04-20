@@ -13,7 +13,7 @@ class Smith extends Model
 
     public function swords()
     {
-      return $this->hasMany(Sword::class, 'smith_id', 'id');
+      return $this->hasMany(Sword::class, 'smith_id', 'id')->orderBy('id', 'DESC');
     }
 
 }

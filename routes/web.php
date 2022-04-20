@@ -27,6 +27,10 @@ route::get('smiths/favorites/add/{id}', [SmithController::class, 'addFavorite'])
 Route::get('smiths/{slug?}', [SmithController::class, 'show'])->name('showsmith');
 
 Route::get('swords/submit/{slug?}', [SwordController::class, 'submitSword'])->middleware(['auth'])->name('swordsubmit');
+Route::post('swords/submit/submitsword', [SwordController::class, 'store'])->middleware(['auth'])->name('submitsword');
+route::get('sword/myswords', [SwordController::class, 'mySwords'])->middleware(['auth'])->name('myswords');
+Route::get('sword/{slug?}/{id?}', [SwordController::class, 'show'])->name('showsword');
+
 
 //Route::get('/', function () {
     //return view('home');

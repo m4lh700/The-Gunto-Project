@@ -7,17 +7,24 @@ use App\Models\Smith;
 use App\Services\HelperService;
 use Exception;
 use view;
+use Illuminate\Support\Facades\Log;
 
+/**
+ * SearchController
+ */
 class SearchController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Index for search(/search) request
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param HelperService $helperService
+     *
+     * @return \Illuminate\Http\View
+     * @throws Exception If error occurs
      */
-    public function index(Request $request, HelperService $helperService)
+    public function index(Request $request, HelperService $helperService) : object
     {
-
         try {
             if($request->smith){
                 if($smith = Smith::where('name', 'LIKE', '%' . $request->smith . '%')->first()){
@@ -34,8 +41,7 @@ class SearchController extends Controller
 
             return view('search.index', ['data' => $data, 'metatitle' => NULL, 'metadescription' => NULL]);
         } catch (Exception $e) {
-            echo $e->getMessage();
+            Log::critical($e->getMessage()); //Send to Slack
         }
-
     }
 }

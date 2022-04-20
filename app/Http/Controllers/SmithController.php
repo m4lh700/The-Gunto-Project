@@ -9,11 +9,18 @@ use App\Services\SmithService;
 use App\Services\HelperService;
 use view;
 use Cache;
+use Illuminate\Support\Facades\Log;
 
+/**
+ * SmithController
+ */
 class SmithController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Index for Smiths(/smiths) request
+     *
+     * @param SmithService $smithService
+     * @param HelperService $helperService
      *
      * @return \Illuminate\Http\View
      */
@@ -26,48 +33,64 @@ class SmithController extends Controller
         return view('smith.index', ['data' => $data, 'metatitle' => NULL, 'metadescription' => NULL]);
     }
 
-
     /**
-     * Display a single instance of the resource.
+     * Show specific Smith based on slug (/smiths/{slug})
+     *
+     * @param string $slug
+     * @param SmithService $smithService
      *
      * @return \Illuminate\Http\View
      */
     public function show(string $slug, SmithService $smithService) : object
     {
-        $smith = Smith::where('slug', $slug)->with('swords')->first();//->with('swords')->first();
+        $smith = Smith::where('slug', $slug)->with('swords')->first();
         $smith->view_count += 1;
         $smith->save();
         $nextSmith = Smith::where('id', $smith->id + 1)->first('slug');
         $previousSmith = Smith::where('id', $smith->id - 1)->first('slug');
         $previousSmith ? $prev = $previousSmith->slug : $prev = NULL;
-        //$smithService->addOrGetCache('show_smiths', 3600, $smith);
 
         return view('smith.show', ['data' => $smith, 'nextsmith' => $nextSmith->slug, 'previoussmith' => $prev, 'metatitle' => $smith->name, 'metadescription' => NULL]);
     }
 
     /**
-     * Display a single listing of the favorites resource.
+     * Show favorites list(/smiths/favarites), only if user is logged in(middleware)
      *
      * @return \Illuminate\Http\View
      */
     public function favorites() : object
     {
         $smiths = Favoritesmith::where('user_id', auth()->user()->id)->with('smith')->orderBy('created_at', 'DESC')->get();
-        //dd($smiths);
+
         return view('smith.favorites', ['data' => $smiths, 'metatitle' => NULL, 'metadescription' => NULL]);
     }
 
+    /**
+     * Remove specific smith(/smiths/favorites/remove/{id}) from favorites for this user
+     *
+     * @param int $id
+     *
+     * @return object
+     */
     public function removeFavorite(int $id) : object
     {
-        $smithfav = Favoritesmith::where('user_id', auth()->user()->id)->where('smith_id', $id)->first();
-        $smith = Smith::where('id', $id)->first('name');
-        $smithfav->delete();
+        try {
+            $smithfav = Favoritesmith::where('user_id', auth()->user()->id)->where('smith_id', $id)->first();
+            $smith = Smith::where('id', $id)->first('name');
+            $smithfav->delete();
+        } catch (Exception $e) {
+            Log::critical($e->getMessage());
+        }
+
         toast()->success('Smith('. $smith->name .') removed from favorites!')->pushOnNextPage();
-        unset($smith);
-        unset($smithfav);
         return redirect()->route('favoritesmiths');
     }
 
+    /**
+     * @param int $id
+     *
+     * @return object
+     */
     public function addFavorite(int $id) : object
     {
         $checkFav = Favoritesmith::where('user_id', auth()->user()->id)->where('smith_id', $id)->first();

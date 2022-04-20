@@ -10,5 +10,11 @@ class Sword extends Model
     use HasFactory;
 
     protected $table = 'swords';
+    protected $fillable = ['smith_id', 'active', 'description', 'sword_type', 'user_id'];
+
+    public function smith()
+    {
+        return $this->hasOne(Smith::class, 'id', 'smith_id');
+    }
 
 }
