@@ -27,7 +27,7 @@ class SmithController extends Controller
     public function index(SmithService $smithService, HelperService $helperService) : object
     {
         $data = Cache::remember('index_smiths' . request()->get('page'), 3600, function () {
-            return Smith::where('name', '<>', NULL)->with('swords')->orderBy('view_count', 'DESC')->paginate(20);
+            return Smith::getIndexSmiths()->paginate(20);
         });
 
         $smithService->generateSlugs($helperService);
@@ -48,8 +48,8 @@ class SmithController extends Controller
         $smith = Smith::where('slug', $slug)->with('swords')->first();
         $smith->view_count += 1;
         $smith->save();
-        $nextSmith = Smith::where('id', $smith->id + 1)->first('slug');
-        $previousSmith = Smith::where('id', $smith->id - 1)->first('slug');
+        $nextSmith = Smith::getByID($smith->id - 1)->first('slug');
+        $previousSmith = Smith::getByID($smith->id - 1)->first('slug');
         $previousSmith ? $prev = $previousSmith->slug : $prev = NULL;
 
         return view('smith.show', ['data' => $smith, 'nextsmith' => $nextSmith->slug, 'previoussmith' => $prev, 'metatitle' => $smith->name, 'metadescription' => NULL]);
