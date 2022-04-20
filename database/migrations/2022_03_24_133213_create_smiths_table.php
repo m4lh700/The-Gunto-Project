@@ -19,8 +19,13 @@ return new class extends Migration
             $table->string('main_image')->nullable();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
-            $table->boolean('rjt');
+            $table->text('short_description')->nullable();
+            $table->boolean('rjt')->nullable();
             $table->timestamps();
+            $table->string('slug')->nullable();
+            $table->integer('view_count')->nullable();
+            $table->string('avatar')->nullable();
+            $table->integer('stars')->nullable();
         });
     }
 

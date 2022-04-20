@@ -48,7 +48,7 @@ class SmithController extends Controller
         $smith = Smith::where('slug', $slug)->with('swords')->first();
         $smith->view_count += 1;
         $smith->save();
-        $nextSmith = Smith::getByID($smith->id - 1)->first('slug');
+        $nextSmith = Smith::getByID($smith->id + 1)->first('slug');
         $previousSmith = Smith::getByID($smith->id - 1)->first('slug');
         $previousSmith ? $prev = $previousSmith->slug : $prev = NULL;
 

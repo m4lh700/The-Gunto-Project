@@ -12,8 +12,8 @@
             @for($i = 0; $i < $result['stars']; $i++)
               <x-heroicon-s-star class="w-6 h-6 mr-1 float-left mx-auto my-auto dark:text-black"/>
             @endfor
-            <p class="font-thin text-sm">Views: @if($result['view_count'] > 0) {{ $result['view_count'] }} @else 0 @endif</p>
-            <p class="font-thin text-sm">Swords:
+            <p class="font-thin text-sm inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Views: @if($result['view_count'] > 0) {{ $result['view_count'] }} @else 0 @endif</p>
+            <p class="font-thin text-sm inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Swords:
               {{ $result->swords->count() }}
             </p>
           </li>

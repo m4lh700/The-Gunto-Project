@@ -18,9 +18,11 @@ return new class extends Migration
             $table->integer('smith_id')->nullable();
             $table->string('title')->nullable();
             $table->string('description')->nullable();
+            $table->integer('sword_type')->nullable();
+            $table->integer('user_id')->nullable();
             $table->string('main_image')->nullable();
             $table->string('condition')->nullable();
-            $table->boolean('active');
+            $table->boolean('active')->nullable();
             $table->timestamps();
         });
     }
